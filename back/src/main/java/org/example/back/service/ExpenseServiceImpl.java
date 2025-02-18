@@ -2,8 +2,7 @@ package org.example.back.service;
 
 import jakarta.transaction.Transactional;
 import org.example.back.entity.Expense;
-import org.example.back.repository.ExpenseRespository;
-import org.springframework.stereotype.Component;
+import org.example.back.repository.ExpenseRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,24 +10,24 @@ import java.util.List;
 @Transactional
 @Service
 public class ExpenseServiceImpl implements ExpenseService {
-    private final ExpenseRespository expenseRespository;
+    private final ExpenseRepository expenseRepository;
 
-    public ExpenseServiceImpl(ExpenseRespository expenseRespository) {
-        this.expenseRespository = expenseRespository;
+    public ExpenseServiceImpl(ExpenseRepository expenseRepository) {
+        this.expenseRepository = expenseRepository;
     }
 
     @Override
     public List<Expense> getAll() {
-        return expenseRespository.findAll();
+        return expenseRepository.findAll();
     }
 
     @Override
     public void add(Expense expense) {
-        expenseRespository.save(expense);
+        expenseRepository.save(expense);
     }
 
     @Override
     public Expense addExpense(Expense expense) {
-        return expenseRespository.save(expense);
+        return expenseRepository.save(expense);
     }
 }
